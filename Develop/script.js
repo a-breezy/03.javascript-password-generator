@@ -88,19 +88,52 @@ var upperCasedCharacters = [
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// generate password
+// WHEN prompted for password criteria
+// THEN I select which criteria to include in the password
+//// generate password
 function generatePassword() {
-  // Do stuff
+  // WHEN prompted for the length of the password
+  // THEN I choose a length of at least 8 characters and no more than 128 characters
   const totalLength = prompt("How many characters would you like to use? (Between 8 and 128)");
   if(totalLength >= 8 || totalLength <= 128) {
     // tell user their password length
     alert("Your new password will be ${totalLength} characters long.");
   }
-  else {
-    // tell user their password is not an acceptable length
-    alert("Your password is not an acceptable length.");
-  }
 
+  // // WHEN prompted for character types to include in the password
+  // // THEN I choose lowercase, uppercase, numeric, and/or special characters
+  // var options = {
+  //   hasNumber : window.confirm('Would you like to include numbers?'),
+  //   hasLowerCase : window.confirm('Would you like to include uppercase letters?'),
+  //   hasUpperCase : window.confirm('Would you like to include lowercase letters?'),
+  //   hasSymbol : window.confirm('Would you like to include symbols?')
+  // };
+
+  // if(options.hasNumber === false && options.hasLowerCase === false && options.hasUpperCase === false && options.hasSymbol === false)
+  // // else {
+  // //   // tell user their password is not an acceptable length
+  // //   alert("Your password is not an acceptable length.");
+  // // }
+
+  let upper = confirm("Woudl you like to include upper case letters?");
+  let lower = confirm("Woudl you like to include lower case letters?");
+  let symbol = confirm("Woudl you like to include special characters?");
+  let number = confirm("Woudl you like to include numbers?");
+
+  let allChars = "";
+
+  if(upper) {
+    allChars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  }
+  if(lower) {
+    allChars += "abcdefghijklmnopqrstuvwxyz"
+  }
+  if(symbol) {
+    allChars += "@%+\\/\"'!#$^?:,)(}{][~-_."
+  }
+  if(number) {
+    allChars += "0123456789"
+  }
 }
 
 // Write password to the #password input
