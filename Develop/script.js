@@ -100,26 +100,30 @@ function generatePassword() {
   
   // WHEN prompted for the length of the password
   // THEN I choose a length of at least 8 characters and no more than 128 characters
-  const totalLength = prompt("How many characters would you like to use? (Between 8 and 128)");
-  if(totalLength >= parseInt(8) && totalLength <= parseInt(128)) {
-    // tell user their password length
-    alert(`Your new password will be ${totalLength} characters long.`);
-  
-  } else {
-    window.alert("That is not a valid password length");
+  var passwordLength = function() {
+    var totalLength = window.prompt("How many characters would you like to use? (Between 8 and 128)");
+    if(totalLength >= parseInt(8) && totalLength <= parseInt(128)) {
+      // tell user their password length
+      window.alert(`Your new password will be ${totalLength} characters long.`);
+    
+    } else {
+      window.alert("That is not a valid password length");
+      return passwordLength();
+    }
   }
   
+  passwordLength()
   // WHEN prompted for password criteria
   // THEN I select which criteria to include in the password
   alert("You are about to choose the types of characters to include in your password.")
   
 
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
+  // WHEN I answer each prompt
+  // THEN my input should be validated and at least one character type should be selected
+  // WHEN all prompts are answered
+  // THEN a password is generated that matches the selected criteria
+  // WHEN the password is generated
+  // THEN the password is either displayed in an alert or written to the page
 
 
   // var options = {
@@ -139,25 +143,26 @@ function generatePassword() {
 
   // WHEN prompted for character types to include in the password
   // THEN I choose lowercase, uppercase, numeric, and/or special characters
-  let upper = confirm("Woudl you like to include upper case letters?");
-  let lower = confirm("Woudl you like to include lower case letters?");
-  let symbol = confirm("Woudl you like to include special characters?");
-  let number = confirm("Woudl you like to include numbers?");
+  let upper = confirm("Would you like to include upper case letters?");
+  let lower = confirm("Would you like to include lower case letters?");
+  let symbol = confirm("Would you like to include special characters?");
+  let number = confirm("Would you like to include numbers?");
 
-  let allChars = "";
+  // let allChars = "";
 
-  if(upper) {
-    allChars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  }
-  if(lower) {
-    allChars += "abcdefghijklmnopqrstuvwxyz"
-  }
-  if(symbol) {
-    allChars += "@%+\\/\"'!#$^?:,)(}{][~-_."
-  }
-  if(number) {
-    allChars += "0123456789"
-  }
+  // if(upper) {
+  //   allChars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  // }
+  // if(lower) {
+  //   allChars += "abcdefghijklmnopqrstuvwxyz"
+  // }
+  // if(symbol) {
+  //   allChars += "@%+\\/\"'!#$^?:,)(}{][~-_."
+  // }
+  // console.log(string.symbol);
+  // if(number) {
+  //   allChars += "0123456789"
+  // }
 }
 
 // Write password to the #password input
@@ -174,3 +179,29 @@ function writePassword() {
 
 //// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+// define character types
+
+// determine password length 8-128
+////if password length is acceptable proceed to types of characters
+//// if length not acceptable repeat question
+
+// ask for types of characters
+/// lowercase letters?
+/// uppercase letters?
+/// numbers?
+/// special characters?
+
+// generate password:
+// based on passwordLength
+/// yes lowercase letters?
+  /// include lowercase
+/// yes uppercase letters?
+  /// include uppercasre
+/// yes numbers?
+  ///include numbers
+/// yes special characters?
+  ///include special characters
+
+// include button to begin function
