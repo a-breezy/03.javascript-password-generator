@@ -31,10 +31,14 @@ var specialCharacters = [
   '_',
   '.'
 ];
+console.log(specialCharacters);
+
 // Array of numeric characters to be included in password
 var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+console.log(numericCharacters);
+
 // Array of lowercase characters to be included in password
-var lowerCasedCharacters = [
+var lowerCaseCharacters = [
   'a',
   'b',
   'c',
@@ -62,8 +66,10 @@ var lowerCasedCharacters = [
   'y',
   'z'
 ];
+console.log(lowerCaseCharacters);
+
 // Array of uppercase characters to be included in password
-var upperCasedCharacters = [
+var upperCaseCharacters = [
   'A',
   'B',
   'C',
@@ -91,6 +97,7 @@ var upperCasedCharacters = [
   'Y',
   'Z'
 ];
+console.log(upperCaseCharacters);
 
 
 // WHEN prompted for password criteria
@@ -104,6 +111,7 @@ function generatePassword() {
     var totalLength = window.prompt("How many characters would you like to use? (Between 8 and 128)");
     if(totalLength >= parseInt(8) && totalLength <= parseInt(128)) {
       // tell user their password length
+      console.log(totalLength);
       window.alert(`Your new password will be ${totalLength} characters long.`);
     
     } else {
@@ -111,12 +119,78 @@ function generatePassword() {
       return passwordLength();
     }
   }
-  
   passwordLength()
+
   // WHEN prompted for password criteria
   // THEN I select which criteria to include in the password
-  alert("You are about to choose the types of characters to include in your password.")
+  alert("What type of characters would you like to include in your password?");
   
+  var randomNumber = function(min, max) {
+    var value = Math.floor(Math.random() * (max - min) + min);
+
+    return value;
+  };
+  randomNumber
+  console.log(randomNumber);
+  
+  // WHEN prompted for character types to include in the password
+  // THEN I choose lowercase, uppercase, numeric, and/or special characters
+  let symbol = confirm("Would you like to include special characters?");
+  console.log("ask for special characters", symbol);
+  let number = confirm("Would you like to include numbers?");
+  console.log("ask for number characters", number);
+  let lower = confirm("Would you like to include lower case letters?");
+  console.log("ask for lowercase characters", lower);
+  let upper = confirm("Would you like to include upper case letters?");
+  console.log("ask for uppercase characters", upper);
+  
+  // creates a function that seraches user criteria and include variables based on their choices
+  // ie. if upper === True --> iterate through upperCaseCharaters and select at Math.random
+  var passwordVariables = function() {
+    
+    // if symbol is true, iterate through 'specialCharacters' array and select at random
+    if(symbol === true) {
+      // include specialCharacters
+      Math.random([specialCharacters]);
+    }
+    else {
+      // don't include specialCharacters
+    }
+    
+    // if number is true, iterate through 'numericCharacters' array and select at random
+    if(number) {
+      // include numbers
+      Math.random([numericCharacters]);
+    } else {
+      // don't include numbers
+    }
+    
+    // if lower is true, iterate through 'lowerCaseCharacters' array and select at random
+    if(lower) {
+      // include lowerCaseCharacters
+      Math.random([upperCaseCharacters]);
+    } else {
+      // don't include lowerCaseCharacters
+    }
+    
+    // if upper is true, iterate through 'upperCaseCharacters' array and select at random
+    if(upper) {
+      // include upperCaseCharacters
+      Math.random([upperCaseCharacters]);
+    } else {
+      // don't include upperCaseCharacters
+    }
+    
+    if(!symbol && !number && !lower && !upper) {
+      console.log("all false, repeat function");
+      alert("You didn't select any characters for your password!")
+      alert("Try again.")
+      alert("And this time please accept some characters for your password!")
+      passwordVariables();
+    }
+    console.log("call passwordVariables() fucntion")
+    passwordVariables()
+  }
 
   // WHEN I answer each prompt
   // THEN my input should be validated and at least one character type should be selected
@@ -126,13 +200,7 @@ function generatePassword() {
   // THEN the password is either displayed in an alert or written to the page
 
 
-  // var options = {
-  //   hasNumber : window.confirm('Would you like to include numbers?'),
-  //   hasLowerCase : window.confirm('Would you like to include uppercase letters?'),
-  //   hasUpperCase : window.confirm('Would you like to include lowercase letters?'),
-  //   hasSymbol : window.confirm('Would you like to include symbols?')
-  // };
-
+  
   // if(options.hasNumber === false && options.hasLowerCase === false && options.hasUpperCase === false && options.hasSymbol === false)
   // // else {
   // //   // tell user their password is not an acceptable length
@@ -141,12 +209,8 @@ function generatePassword() {
 
 
 
-  // WHEN prompted for character types to include in the password
-  // THEN I choose lowercase, uppercase, numeric, and/or special characters
-  let upper = confirm("Would you like to include upper case letters?");
-  let lower = confirm("Would you like to include lower case letters?");
-  let symbol = confirm("Would you like to include special characters?");
-  let number = confirm("Would you like to include numbers?");
+
+
 
   // let allChars = "";
 
