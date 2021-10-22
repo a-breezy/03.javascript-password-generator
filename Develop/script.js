@@ -125,14 +125,14 @@ function generatePassword() {
   // THEN I select which criteria to include in the password
   alert("What type of characters would you like to include in your password?");
   
-  var randomNumber = function(min, max) {
-    var value = Math.floor(Math.random() * (max - min) + min);
+  // var randomNumber = function(char) {
+  //   var value = Math.random(char);
 
-    return value;
-  };
-  randomNumber
-  console.log(randomNumber);
-  
+  //   return value;
+  // };
+  // randomNumber
+  // console.log(randomNumber(specialCharacters));
+
   // WHEN prompted for character types to include in the password
   // THEN I choose lowercase, uppercase, numeric, and/or special characters
   let symbol = confirm("Would you like to include special characters?");
@@ -147,11 +147,16 @@ function generatePassword() {
   // creates a function that seraches user criteria and include variables based on their choices
   // ie. if upper === True --> iterate through upperCaseCharaters and select at Math.random
   var passwordVariables = function() {
-    
+    // problem: need to select a random amount of variables from each char type
+
     // if symbol is true, iterate through 'specialCharacters' array and select at random
     if(symbol === true) {
       // include specialCharacters
-      Math.random([specialCharacters]);
+      for(var val of specialCharacters) {
+        console.log(val);
+        Math.random([specialCharacters]);
+
+      }
     }
     else {
       // don't include specialCharacters
