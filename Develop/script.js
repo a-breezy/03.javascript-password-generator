@@ -1,7 +1,3 @@
-// AS AN employee with access to sensitive data
-// I WANT to randomly generate a password that meets certain criteria
-// SO THAT I can create a strong password that provides greater security
-
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
@@ -190,7 +186,7 @@ var generatePassword = function() {
   var random = randomPassword();
   console.log(random);
 
-  return password.join("");
+  return random;
 }
 
 // Write password to the #password input
@@ -199,9 +195,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
-
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
 
 //// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
