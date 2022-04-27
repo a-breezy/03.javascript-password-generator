@@ -97,43 +97,41 @@ var passwordLength = function () {
 		"How many characters would you like to use? (Between 8 and 128)"
 	);
 
-	// confirm pass word is between 8 -128 char
+	// confirm password is between 8 -128 char
 	if (totalLength >= parseInt(8) && totalLength <= parseInt(128)) {
 		window.alert(`Your new password will be ${totalLength} characters long.`);
-		return totalLength;
 	} else {
 		window.alert(
 			`You entered ${totalLength} characters. That's not a valid password length, please re-enter`
 		);
 		return passwordLength();
 	}
+	return totalLength;
 };
 
 // determine character types
 var setChar = function () {
 	// include lowercase characters by default
-	var includedCharacters = [lowerCaseCharacters];
+	var includeChar = [lowerCaseCharacters];
 
-	var defineCharacters = function () {
+	var defineChar = function () {
 		alert(
 			"What type of characters would you like to include in your password?"
 		);
 
-		// choose lowercase, uppercase, numeric, and/or special characters
+		// choose uppercase, numeric, and/or special characters
 		let symbol = confirm("Would you like to include special characters?");
 		let number = confirm("Would you like to include numbers?");
-		let upper = confirm("Would you like to include upper case letters?");
+		let upper = confirm("Would you like to include uppercase letters?");
 
-		if (symbol === true) {
-			includedCharacters.push(specialCharacters);
+		if (symbol) {
+			includeChar.push(specialCharacters);
 		}
-
-		if (number === true) {
-			includedCharacters.push(numericCharacters);
+		if (number) {
+			includeChar.push(numericCharacters);
 		}
-
 		if (upper) {
-			includedCharacters.push(upperCaseCharacters);
+			includeChar.push(upperCaseCharacters);
 		}
 
 		if (!symbol && !number && !upper) {
@@ -141,38 +139,36 @@ var setChar = function () {
 			if (true) {
 				return;
 			} else {
-				defineCharacters();
+				defineChar();
 			}
 		}
 	};
 
-	defineCharacters();
-
-	includedCharacters = includedCharacters.flat();
-	return includedCharacters;
+	defineChar();
+	// set includeChar to all chosen characters, then flatten into one array
+	includeChar = includeChar.flat();
+	return includeChar;
 };
 
 function randomPassword() {
 	let length = passwordLength();
 	let char = setChar();
 	let newPassword = "";
-	// iterate through array includedCharacters until character length set by user is met
+	// iterate through length and randomly select characters
 	for (let i = 0; i < length; i++) {
 		// randomize selected characters
 		newPassword += char[Math.floor(Math.random() * char.length)];
 	}
-	// output password
 	return newPassword;
 }
 
 // generate password
 var generatePassword = function () {
 	var random = randomPassword();
-
 	return random;
 };
 
-// Write password to the #password input
+// post password to index.html
 function postPassword() {
 	var password = generatePassword();
 	var passwordText = document.querySelector("#password");
